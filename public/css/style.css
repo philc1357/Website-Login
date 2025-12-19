@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background: cadetblue;
+  width: 320px;
+}
+
+button {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input {
+    padding: 3px;
+    border-style: inset;
+    border-radius: 5px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card button {
+  width: 100%;
+}
