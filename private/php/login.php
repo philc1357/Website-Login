@@ -1,27 +1,43 @@
 <?php
 
+//Session Cookie setzem zum einloggen
+session_start();
+
+//Formulardaten holen
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 /* Verbindung */
 $conn = new mysqli("localhost", "webapp", "einSicheresPasswort", "website_login");
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 /* UNSICHERE SQL-ABFRAGE (SQL Injection möglich!) */
-$sql = "SELECT * FROM users 
-        WHERE username = '$username' 
-        AND passwort = '$password'";
-
+$sql = "SELECT u.user_id, u.gruppe_id, g.name AS rolle
+        FROM users u
+        JOIN gruppe g ON g.gruppe_id = u.gruppe_id
+        WHERE u.username = '$username' AND u.passwort = '$password'
+        LIMIT 1";
 $result = $conn->query($sql);
 
-/* IF-Abfrage */
-if ($result && $result->num_rows > 0) {
+//Abfrage ob Daten korrekt sind
+if ($result && $result->num_rows === 1) {
+    $row = $result->fetch_assoc();
+    //WICHTIG: Session-ID nach Login erneuern schützt vor Session Fixation
+    //session_regenerate_id(true);
+
+    //Login-Zustand speichern
+    $_SESSION['user_id']  = (int)$row['user_id'];
+    $_SESSION['username'] = $username;
+    $_SESSION['gruppe_id'] = (int)$row['gruppe_id'];
+
+    //Weiterleitung wenn erfolgreich
     header("Location: ../../public/php/willkommen.php");
     exit;
-} else {
+}
+//Weiterleitung wenn nicht erfolgreich
+else {
     header("Location: ../../public/html/login_error.html");
     exit;
 }

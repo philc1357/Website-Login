@@ -11,9 +11,12 @@
 }
 
 button {
-  background: rgb(206, 206, 206);;
+  background: rgb(206, 206, 206);
     padding: 5px;
     border-radius: 5px;
+}
+button:hover {
+  background: rgb(190, 190, 190);
 }
 
 input {
@@ -30,4 +33,9 @@ input {
 
 .card button {
   width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

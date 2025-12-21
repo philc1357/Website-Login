@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . "/../../private/php/auth.php";
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,16 +11,44 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/willkommen.css">
 </head>
-<body>
-    <header>
-        <div>Willkommen</div>
-        <div>
-            <form action="logout.php"><button>Logout</button></form>
-        </div>
-    </header>
 
-    <main></main>
+<header>
+    <a href="">Willkommen, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+    <form action="../../private/php/logout.php"><button>Logout</button></form>
+</header>
+
+<main>
+
+    <?php if ($_SESSION['gruppe_id'] === 1): ?>
+        <h3>Besitzer-Bereich</h3>
+        <hr>
+        <h3>Verwaltungstools</h3>
+        <div class="admin_tool">
+            <a href="verwaltungstool_besitzer.php"><button>User-Management</button></a>
+            <a href=""><button>User-Management</button></a>
+            <a href=""><button>User-Management</button></a>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($_SESSION['gruppe_id'] === 2): ?>
+        <h3>Admin-Bereich</h3>
+        <hr>
+        <h3>Verwaltungstools</h3>
+        <div class="admin_tool">
+            <a href=""><button>User-Management</button></a>
+            <a href=""><button>User-Management</button></a>
+            <a href=""><button>User-Management</button></a>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($_SESSION['gruppe_id'] === 3): ?>
+        <p>Standard-Benutzer.</p>
+    <?php endif; ?>    
+</main>
+
+<footer>
     
-    <footer></footer>
+</footer>
+
 </body>
 </html>
