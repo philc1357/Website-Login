@@ -48,7 +48,7 @@ if ($insertResult) {
     echo'
         <div class="card">
             <p>Erfolgreich registriert!</p>
-            <a href="pw_forgot.php">
+            <a href="../../index.html">
                 <button>Zurück</button>
             </a>
         </div>';

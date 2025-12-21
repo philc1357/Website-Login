@@ -2,14 +2,16 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 32px;
-  border: 2px solid black;
-  border-radius: 10px;
-  background: cadetblue;
+  padding: 40px;
+  background: rgb(225, 225, 225);
   width: 320px;
+  box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.59);
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.59);
+  -moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.59);
 }
 
 button {
+  background: rgb(206, 206, 206);;
     padding: 5px;
     border-radius: 5px;
 }

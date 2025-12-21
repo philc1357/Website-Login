@@ -23,7 +23,7 @@
             <input id="email" type="email" name="email" placeholder="Email" required>
 
             <label for="password">Passwort</label>
-            <input id="password" type="password" name="password" placeholder="Passwort" required>
+            <input id="password" type="password" name="password" placeholder="Passwort" minlength="6" required>
 
             <button type="submit">Registrieren</button>
         </form>
