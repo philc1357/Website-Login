@@ -52,19 +52,18 @@ echo "<tr>
         <th>Email</th>
         <th>Status</th>
         <th>Gruppe</th>
-        <th></th>
       </tr>";
 
 while ($row = $result->fetch_assoc()) {
     echo "<tr>";
-    echo "<td>" . (int)$row['user_id'] . "</td>";
-    echo "<td>" . htmlspecialchars($row['vorname']) . "</td>";
-    echo "<td>" . htmlspecialchars($row['nachname']) . "</td>";
-    echo "<td>" . htmlspecialchars($row['username']) . "</td>";
-    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-    echo "<td>" . htmlspecialchars($row['zustand']) . "</td>";
-    echo "<td>" . (int)$row['gruppe_id'] . "</td>";
-    echo "<td><a href=''><button>Edit</button></a></td>";
+        echo "<td>" . (int)$row['user_id'] . "</td>";
+        echo "<td>" . htmlspecialchars($row['vorname']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['nachname']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['username']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['zustand']) . "</td>";
+        echo "<td>" . (int)$row['gruppe_id'] . "</td>";
+        //echo "<td><a href=''><button>Edit</button></a></td>";
     echo "</tr>";
 }
 
