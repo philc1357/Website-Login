@@ -9,10 +9,11 @@ require_once __DIR__ . "/../../private/php/auth_besitzer.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/willkommen.css">
+    <link rel="stylesheet" href="../css/user_management.css">
 </head>
 
+<body>
+    
 <header>
     <a href="willkommen.php">Willkommen, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
     <form action="../../private/php/logout.php"><button>Logout</button></form>
@@ -71,6 +72,10 @@ echo "</table>";
 
 $conn->close();
 ?>
+
+<div class="btn_zurueck">
+    <a href="willkommen.php"><button>Zurück</button></a>
+</div>
 </main>
 
 
