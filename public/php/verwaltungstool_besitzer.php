@@ -15,7 +15,7 @@ require_once __DIR__ . "/../../private/php/auth_besitzer.php";
 <body>
     
 <header>
-    <a href="willkommen.php">Willkommen, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+    <a href="willkommen.php">Willkommen, <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
     <form action="../../private/php/logout.php"><button>Logout</button></form>
 </header>
 
@@ -29,12 +29,27 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$conn = new mysqli("localhost", "webapp", "einSicheresPasswort", "website_login");
+$conn = new mysqli("localhost", "webapp", "linui-1357", "website_login");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT user_id, vorname, nachname, username, email, zustand, gruppe_id FROM users";
+$sql = "SELECT 
+    u.user_id,
+    u.user_firstname,
+    u.user_lastname,
+    u.user_birthday,
+    u.user_name,
+    u.user_email,
+    u.user_password,
+    g.group_name
+FROM 
+    users u
+JOIN 
+    groups g
+ON 
+    u.group_id = g.group_id;
+";
 $result = $conn->query($sql);
 
 if (!$result) {
@@ -50,6 +65,7 @@ echo "<tr>
         <th>Nachname</th>
         <th>Username</th>
         <th>Email</th>
+        <th>Passwort</th>
         <th>Status</th>
         <th>Gruppe</th>
       </tr>";
@@ -57,12 +73,13 @@ echo "<tr>
 while ($row = $result->fetch_assoc()) {
     echo "<tr>";
         echo "<td>" . (int)$row['user_id'] . "</td>";
-        echo "<td>" . htmlspecialchars($row['vorname']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['nachname']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['username']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['zustand']) . "</td>";
-        echo "<td>" . (int)$row['gruppe_id'] . "</td>";
+        echo "<td>" . htmlspecialchars($row['user_firstname']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['user_lastname']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['user_birthday']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['user_name']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['user_email']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['user_password']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['group_name']) . "</td>";
         //echo "<td><a href=''><button>Edit</button></a></td>";
     echo "</tr>";
 }

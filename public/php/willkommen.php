@@ -13,13 +13,13 @@ require_once __DIR__ . "/../../private/php/auth.php";
 </head>
 
 <header>
-    <a href="">Willkommen, <?php echo htmlspecialchars($_SESSION['username']); ?></a>
+    <a href="">Willkommen, <?php echo htmlspecialchars($_SESSION['user_name']); ?></a>
     <form action="../../private/php/logout.php"><button>Logout</button></form>
 </header>
 
 <main>
 
-    <?php if ($_SESSION['gruppe_id'] === 1): ?>
+    <?php if ($_SESSION['group_id'] === 1): ?>
         <h3>Besitzer-Bereich</h3>
         <hr>
         <h3>Verwaltungstools</h3>
@@ -30,7 +30,7 @@ require_once __DIR__ . "/../../private/php/auth.php";
         </div>
     <?php endif; ?>
 
-    <?php if ($_SESSION['gruppe_id'] === 2): ?>
+    <?php if ($_SESSION['group_id'] === 2): ?>
         <h3>Admin-Bereich</h3>
         <hr>
         <h3>Verwaltungstools</h3>
@@ -41,7 +41,7 @@ require_once __DIR__ . "/../../private/php/auth.php";
         </div>
     <?php endif; ?>
 
-    <?php if ($_SESSION['gruppe_id'] === 3): ?>
+    <?php if ($_SESSION['group_id'] === 3): ?>
         <p>Standard-Benutzer.</p>
     <?php endif; ?>    
 </main>

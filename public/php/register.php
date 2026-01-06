@@ -10,20 +10,20 @@
 <body>
     <div class="card">
         <form action="register_submit.php" method="post" class="stack">
-            <label for="firstname">Vorname</label>
-            <input id="firstname" type="text" name="firstname" placeholder="Vorname" required>
+            <label for="user_firstname">Vorname</label>
+            <input id="user_firstname" type="text" name="user_firstname" placeholder="Vorname" required>
 
-            <label for="lastname">Nachname</label>
-            <input id="lastname" type="text" name="lastname" placeholder="Nachname" required>
+            <label for="user_lastname">Nachname</label>
+            <input id="user_lastname" type="text" name="user_lastname" placeholder="Nachname" required>
 
-            <label for="username">Benutzername</label>
-            <input id="username" type="text" name="username" placeholder="Benutzername" required>
+            <label for="user_name">Benutzername</label>
+            <input id="user_name" type="text" name="user_name" placeholder="Benutzername" required>
 
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Email" required>
+            <label for="user_email">Email</label>
+            <input id="user_email" type="email" name="user_email" placeholder="Email" required>
 
-            <label for="password">Passwort</label>
-            <input id="password" type="password" name="password" placeholder="Passwort" minlength="6" required>
+            <label for="user_password">Passwort</label>
+            <input id="user_password" type="password" name="user_password" placeholder="Passwort" minlength="6" required>
 
             <button type="submit">Registrieren</button>
         </form>

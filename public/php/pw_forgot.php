@@ -10,17 +10,17 @@
 <body>
     <div class="card">
         <form action="passwort_reset.php" method="post" class="stack">
-            <label for="firstname">Vorname</label>
-            <input id="firstname" type="text" name="firstname" placeholder="Vorname" required>
+            <label for="user_firstname">Vorname</label>
+            <input id="user_firstname" type="text" name="user_firstname" placeholder="Vorname" required>
 
-            <label for="lastname">Nachname</label>
-            <input id="lastname" type="lastname" name="lastname" placeholder="Nachname" required>
+            <label for="user_lastname">Nachname</label>
+            <input id="user_lastname" type="user_lastname" name="user_lastname" placeholder="Nachname" required>
 
-            <label for="username">Benutzername</label>
-            <input id="username" type="username" name="username" placeholder="Benutzername" required>
+            <label for="user_name">Benutzername</label>
+            <input id="user_name" type="user_name" name="user_name" placeholder="Benutzername" required>
 
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Email" required>
+            <label for="user_email">Email</label>
+            <input id="user_email" type="user_email" name="user_email" placeholder="Email" required>
 
             <button type="submit">Passwort zurücksetzen</button>
         </form>

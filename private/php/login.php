@@ -4,21 +4,22 @@
 session_start();
 
 //Formulardaten holen
-$username = $_POST['username'];
-$password = $_POST['password'];
+$user_name = $_POST['user_name'];
+$user_password = $_POST['user_password'];
 
 /* Verbindung */
-$conn = new mysqli("localhost", "webapp", "einSicheresPasswort", "website_login");
+$conn = new mysqli("localhost", "webapp", "linui-1357", "website_login");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 /* UNSICHERE SQL-ABFRAGE (SQL Injection möglich!) */
-$sql = "SELECT u.user_id, u.gruppe_id, g.name AS rolle
+$sql = "SELECT u.user_id, u.group_id, g.group_name AS rolle
         FROM users u
-        JOIN gruppe g ON g.gruppe_id = u.gruppe_id
-        WHERE u.username = '$username' AND u.passwort = '$password'
+        JOIN groups g ON g.group_id = u.group_id
+        WHERE u.user_name = '$user_name' AND u.user_password = '$user_password'
         LIMIT 1";
+        
 $result = $conn->query($sql);
 
 //Abfrage ob Daten korrekt sind
@@ -29,8 +30,8 @@ if ($result && $result->num_rows === 1) {
 
     //Login-Zustand speichern
     $_SESSION['user_id']  = (int)$row['user_id'];
-    $_SESSION['username'] = $username;
-    $_SESSION['gruppe_id'] = (int)$row['gruppe_id'];
+    $_SESSION['user_name'] = $user_name;
+    $_SESSION['group_id'] = (int)$row['group_id'];
 
     //Weiterleitung wenn erfolgreich
     header("Location: ../../public/php/willkommen.php");
@@ -46,15 +47,15 @@ $conn->close();
 
 
 #ohne sql injections
-/*$username = $_POST['username'] ?? '';
-$password = $_POST['password'] ?? '';
+/*$user_name = $_POST['user_name'] ?? '';
+$user_password = $_POST['user_password'] ?? '';
 
 $dbservername = "localhost";
-$dbusername   = "webapp";
-$dbpassword   = "einSicheresPasswort";
+$dbuser_name   = "webapp";
+$dbuser_password   = "einSicheresPasswort";
 $dbdatabase   = "website_login";
 
-$conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbdatabase);
+$conn = new mysqli($dbservername, $dbuser_name, $dbuser_password, $dbdatabase);
 
 if ($conn->connect_error) {
     die("DB-Verbindung fehlgeschlagen");
@@ -62,10 +63,10 @@ if ($conn->connect_error) {
 
 /* Prepared Statement 
 $stmt = $conn->prepare(
-    "SELECT id FROM users WHERE username = ? AND password = ?"
+    "SELECT id FROM users WHERE user_name = ? AND user_password = ?"
 );
 
-$stmt->bind_param("ss", $username, $password);
+$stmt->bind_param("ss", $user_name, $user_password);
 $stmt->execute();
 
 $stmt->store_result();

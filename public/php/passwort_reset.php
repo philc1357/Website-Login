@@ -14,7 +14,7 @@
 
 <?php
 
-$conn = new mysqli("localhost", "webapp", "einSicheresPasswort", "website_login");
+$conn = new mysqli("localhost", "webapp", "linui-1357", "website_login");
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
 // STEP 2: Passwort wurde abgeschickt -> jetzt updaten
@@ -22,7 +22,7 @@ if (isset($_POST["password_new"]) && isset($_POST["user_id"])) {
     $password_new = $_POST["password_new"];
     $user_id = $_POST["user_id"];
 
-    $sql = "UPDATE users SET passwort = '$password_new' WHERE user_id = '$user_id'";
+    $sql = "UPDATE users SET user_password = '$password_new' WHERE user_id = '$user_id'";
     $ok = $conn->query($sql);
 
     if ($ok) {

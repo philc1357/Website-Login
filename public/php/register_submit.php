@@ -14,21 +14,21 @@
 
 <?php
 
-$username = $_POST['username'];
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$email    = $_POST['email'];
-$password = $_POST['password'];
+$user_name = $_POST['user_name'];
+$user_firstname = $_POST['user_firstname'];
+$user_lastname = $_POST['user_lastname'];
+$user_email    = $_POST['user_email'];
+$user_password = $_POST['user_password'];
 
-$conn = new mysqli("localhost", "webapp", "einSicheresPasswort", "website_login");
+$conn = new mysqli("localhost", "webapp", "linui-1357", "website_login");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-/* Prüfen ob username ODER email schon existiert (unsicher) */
+/* Prüfen ob user_name ODER user_email schon existiert (unsicher) */
 $sql = "SELECT user_id FROM users
-        WHERE username = '$username' OR email = '$email'";
+        WHERE user_name = '$user_name' OR user_email = '$user_email'";
 
 $result = $conn->query($sql);
 
@@ -39,8 +39,8 @@ if ($result && $result->num_rows > 0) {
 }
 
 /* Neuen User anlegen (unsicher) */
-$sql = "INSERT INTO users (vorname, nachname, username, passwort, email)
-        VALUES ('$firstname', '$lastname', '$username', '$password', '$email')";
+$sql = "INSERT INTO users (user_firstname, user_lastname, user_name, user_password, user_email)
+        VALUES ('$user_firstname', '$user_lastname', '$user_name', '$user_password', '$user_email')";
 
 $insertResult = $conn->query($sql);
 
@@ -67,15 +67,15 @@ $conn->close();
 
 
 #ohne sql injections
-/*$username = $_POST['username'] ?? '';
-$password = $_POST['password'] ?? '';
+/*$user_name = $_POST['user_name'] ?? '';
+$user_password = $_POST['user_password'] ?? '';
 
 $dbservername = "localhost";
-$dbusername   = "webapp";
-$dbpassword   = "einSicheresPasswort";
+$dbuser_name   = "webapp";
+$dbuser_password   = "einSicheresPasswort";
 $dbdatabase   = "website_login";
 
-$conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbdatabase);
+$conn = new mysqli($dbservername, $dbuser_name, $dbuser_password, $dbdatabase);
 
 if ($conn->connect_error) {
     die("DB-Verbindung fehlgeschlagen");
@@ -83,10 +83,10 @@ if ($conn->connect_error) {
 
 /* Prepared Statement 
 $stmt = $conn->prepare(
-    "SELECT id FROM users WHERE username = ? AND password = ?"
+    "SELECT id FROM users WHERE user_name = ? AND user_password = ?"
 );
 
-$stmt->bind_param("ss", $username, $password);
+$stmt->bind_param("ss", $user_name, $user_password);
 $stmt->execute();
 
 $stmt->store_result();
